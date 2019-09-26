@@ -1,0 +1,56 @@
+﻿<style>
+    @@media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #section-to-print, #section-to-print * {
+            visibility: visible;
+            text-align: center;
+        }
+    }
+</style>
+<div class="container">
+    <br />
+
+    <div id="section-to-print" class="alert @ViewBag.MessageColor text-center" role="alert">
+        @ViewBag.Message
+        @if (ViewBag.refid != "")
+        {
+            <hr />
+            @Html.Raw("شماره پیگیری : ");
+            @ViewBag.refid
+        }
+        @if (ViewBag.MessageStatusCode != "")
+        {
+            <hr />
+            @Html.Raw("کد خطا : ");
+            @ViewBag.MessageStatusCode
+
+
+        }
+    </div>
+    <hr id="section-to-print" />
+    <div id="section-to-print" class="row text-right">
+        <div class="col">
+            <div class="card">
+
+                <div class="card-body">
+                    <p>
+                        نکات رسید
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <a href="#" onclick="window.print();" class="btn btn-secondary btn-block">چاپ</a>
+        </div>
+        <div class="col">
+            <a href="../manage/index" class="btn btn-primary btn-block">بازگشت</a>
+        </div>
+    </div>
+</div>

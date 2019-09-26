@@ -1,0 +1,22 @@
+﻿@font-face {
+    font-family: 'BTitrBold';
+    src: url('../../font/btitrbold/BTitrBold.eot?#') format('eot'), url('../../font/btitrbold/btitrbold.ttf') format('truetype'), url('../../font/btitrbold/BTitrBold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'IRANSans';
+    src: url('../../font/iransans/IRANSansWeb(FaNum).eot?#') format('eot'), url('../../font/iransans/IRANSansWeb(FaNum).ttf') format('truetype'), url('../../font/iransans/IRANSansWeb(FaNum).woff') format('woff');
+}
+
+* {
+    font-family: 'IRANSans', tahoma, sans-serif;
+}
+
+.IRANSans {
+    font-family: 'IRANSans', tahoma, sans-serif !important;
+}
+
+.BTitrBold {
+    font-family: BTitrBold,'BTitrBold',tahoma !important;
+}

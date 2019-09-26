@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+    {
+        @Html.AntiForgeryToken()
+        <li class="nav-item">
+            <a class="nav-link  text-teal" href="../manage/index" title="پنل مدیریت" data-toggle="tooltip" data-placement="right">@User.Identity.GetUserName()</a>
+            <hr class="mt-0 mb-0" />
+            <input type="submit" class="btn btn-outline-danger btn-sm btn-block" value="خروج از سیستم" />
+        </li>
+    }
+}
+else
+{
+    <li class="nav-item">
+        @Html.ActionLink("ورود", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })
+    </li>
+}

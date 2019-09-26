@@ -1,0 +1,71 @@
+﻿
+.form-check-input {
+    position: absolute;
+    margin-top: 0.3rem;
+    margin-right: -1.25rem;
+    margin-left: 0;
+}
+
+.classictour-navbar {
+    opacity: 0.8;
+    border-top: solid 10px rgba(76, 175, 80, 0.7);
+    border-bottom: solid 2px rgba(76, 175, 80, 0.7);
+    background-color: #f9f9f9;
+}
+
+.placeholder-right ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    text-align: right !important;
+}
+
+.placeholder-right :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    text-align: right !important;
+}
+
+.placeholder-right ::-ms-input-placeholder { /* Microsoft Edge */
+    text-align: right !important;
+}
+
+.placeholder-left ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    text-align: left !important;
+}
+
+.placeholder-left :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    text-align: left !important;
+}
+
+.placeholder-left ::-ms-input-placeholder { /* Microsoft Edge */
+    text-align: left !important;
+}
+
+.placeholder-center ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    text-align: center !important;
+}
+
+.placeholder-center :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    text-align: center !important;
+}
+
+.placeholder-center ::-ms-input-placeholder { /* Microsoft Edge */
+    text-align: center !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: rgba(76, 175, 80, 0.7);
+}
+
+a {
+    color: rgba(76, 175, 80, 0.7);
+}
+
+.text-teal {
+    color: rgba(76, 175, 80, 0.7) !important;
+}
+
+.border-teal {
+    border: solid 1px rgba(76, 175, 80, 0.7) !important;
+}
+
+.card-header {
+    background-color: rgba(76, 175, 80, 0.7)
+}

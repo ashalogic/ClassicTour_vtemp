@@ -1,0 +1,49 @@
+﻿@using ClassicTour_vtemp.Models
+@model LoginViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto mt-4 border-teal border-teal shadow">
+            <br />
+            <section class="text-right" dir="rtl" id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4 class="text-center BBaran">ورود به کلاسیک تور</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-row">
+                        <div class="form-group col-md-12 BKoodakBold">
+                            <span class="text-danger">* </span>@Html.LabelFor(m => m.Phone)
+                            @Html.TextBoxFor(m => m.Phone, new { @dir = "ltr", @class = "form-control", placeholder = "09*********" })
+                            <small>@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger text-right" })</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 BKoodakBold">
+                            <span class="text-danger">* </span>@Html.LabelFor(m => m.Password)
+                            @Html.TextBoxFor(m => m.Password, new { @dir = "ltr", @class = "form-control", type = "password" })
+                            <small>@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger text-right" })</small>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-row">
+                        <div class="form-group col-md-12 BKoodakBold">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 BKoodakBold">
+                            <input type="submit" value="ورود به سیستم" class="btn btn-outline-success btn-block BKoodakBold" />
+                            <a href="/" class="btn btn-outline-danger btn-block BKoodakBold">بازگشت</a>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+
+    </div>
+</div>

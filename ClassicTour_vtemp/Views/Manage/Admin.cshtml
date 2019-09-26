@@ -1,0 +1,93 @@
+﻿
+<div ng-controller="ManagementCtrl" ng-init="Get_Customers();Get_Providers();Get_Sellers();Get_Orders();Get_Tours();" class="container">
+    <div ng-show="AlertVisibility" class="alert {{AlertColor}} text-center">
+        {{AlertMessage}}
+        <button type="button" class="close" ng-click="hidemsg()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div dir="rtl" class="row text-right mt-4">
+        <div class="col-2">
+            <div class="row">
+                <div class="col text-center">
+                    @if (ViewBag.theme == ClassicTour_vtemp.Models.Gender.male)
+                    {
+                        <img class="img-fluid img-thumbnail rounded-circle mx-auto" src="~/Content/img/admin_male.png" />
+                    }
+                    else
+                    {
+                        <img class="img-fluid img-thumbnail rounded-circle mx-auto" src="~/Content/img/admin_female.png" />
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <hr />
+                    <h4 dir="rtl" title="! منزل خودتان است" data-toggle="tooltip" data-placement="bottom" class="text-center mt-3"><span class="badge badge-secondary">نمایه مدیریت</span></h4>
+                    <br />
+                    <div dir="ltr" class="nav flex-column nav-pills text-center" id="NavMenu" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-tours-tab" data-toggle="pill" href="#v-pills-tours" role="tab" aria-controls="v-pills-tours" aria-selected="true">
+                            خدمات
+                        </a>
+                        <hr class="m-0" />
+
+                        <a class="nav-link disabled" id="v-pills-admins-tab" data-toggle="pill" href="#v-pills-admins" role="tab" aria-controls="v-pills-admins" aria-selected="false">
+                            مدیران
+                        </a>
+                        <hr class="m-0" />
+                        <a class="nav-link" id="v-pills-shops-tab" data-toggle="pill" href="#v-pills-shops" role="tab" aria-controls="v-pills-shops" aria-selected="false">
+                            مراکز طرف قرار داد
+                        </a>
+                        <hr class="m-0" />
+                        <a class="nav-link" id="v-pills-sellers-tab" data-toggle="pill" href="#v-pills-sellers" role="tab" aria-controls="v-pills-sellers" aria-selected="false">
+                            گردانندگان
+                        </a>
+                        <hr class="m-0" />
+                        <a class="nav-link" id="v-pills-customers-tab" data-toggle="pill" href="#v-pills-customers" role="tab" aria-controls="v-pills-customers" aria-selected="false">
+                            مشتریان
+                        </a>
+                        <hr class="m-0" />
+                        <a class="nav-link" id="v-pills-orders-tab" data-toggle="pill" href="#v-pills-orders" role="tab" aria-controls="v-pills-orders" aria-selected="false">
+                            سفارشات
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-tours" role="tabpanel" aria-labelledby="Tours_Tab">
+                    @Html.Partial("Manage/_ToursMPartial")
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-admins" role="tabpanel" aria-labelledby="Admins_Tab">
+                    @Html.Partial("Manage/_AdminsMPartial")
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-shops" role="tabpanel" aria-labelledby="shops_Tab">
+                    @Html.Partial("Manage/_ProvidersMPartial")
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-sellers" role="tabpanel" aria-labelledby="Sellers_Tab">
+                    @Html.Partial("Manage/_SellersMPartial")
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-customers" role="tabpanel" aria-labelledby="Customer_Tab">
+                    @Html.Partial("Manage/_CustomersMPartial")
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-orders" role="tabpanel" aria-labelledby="Order_Tab">
+                    @Html.Partial("Manage/_OrdersMPartial")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

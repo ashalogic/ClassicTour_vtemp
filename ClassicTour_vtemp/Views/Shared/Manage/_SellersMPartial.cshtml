@@ -1,0 +1,106 @@
+﻿<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header text-white text-center BTitrBold">
+                <h5 title="برای افزودن فروشنده جدید از فرم زیر استفاده کنید" data-toggle="tooltip" data-placement="right" class="text-center BTitrBold mb-0">
+                    .:: اطلاعات فروشنده ::.
+                </h5>
+            </div>
+            <div class="card-body">
+                <form name="add_seller">
+                    <div class="row BKoodakBold">
+                        <div class="col">
+                            <input ng-class="{ 'is-invalid' :  add_seller.sfirst_name.$invalid && add_seller.sfirst_name.$dirty , 'is-valid': add_seller.sfirst_name.$valid}" name="sfirst_name" ng-model="sfirst_name" type="text" class="form-control" placeholder="نام" required>
+                        </div>
+                        <div class="col">
+                            <input ng-class="{ 'is-invalid' :  add_seller.slast_name.$invalid && add_seller.slast_name.$dirty , 'is-valid': add_seller.slast_name.$valid}" name="slast_name" ng-model="slast_name" type="text" class="form-control" placeholder="نام خانوادگی" required>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row BKoodakBold">
+                        <div class="col">
+                            <input mask="9999999999" ng-class="{ 'is-invalid' :  add_seller.snational_code.$invalid && add_seller.snational_code.$dirty , 'is-valid': add_seller.snational_code.$valid}" name="snational_code" ng-model="snational_code" dir="ltr" type="text" class="form-control" placeholder="کد ملی" required>
+                        </div>
+                        <div class="col">
+                            <select ng-init="sgender='زن'" ng-model="sgender" class="form-control">
+                                <option selected>زن</option>
+                                <option>مرد</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <input mask="09999999999" ng-class="{ 'is-invalid' :  add_seller.sphone_number.$invalid && add_seller.sphone_number.$dirty , 'is-valid': add_seller.sphone_number.$valid}" name="sphone_number" ng-model="sphone_number" dir="ltr" type="text" class="form-control" placeholder="09*********" required>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <div dir="ltr" class="input-group">
+                                <div class="input-group-prepend">
+                                    <button ng-click="smakepassword()" class="btn btn-outline-info" type="button" id="button-addon1">بساز</button>
+                                </div>
+                                <input ng-class="{ 'is-invalid' :  add_seller.spass_word.$invalid && add_seller.spass_word.$dirty , 'is-valid': add_seller.spass_word.$valid}" name="spass_word" dir="ltr" ng-model="spass_word" type="text" class="form-control" placeholder="گذرواژه" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <button dir="rtl" ng-click="Add_Seller()" class="btn btn-outline-success btn-block mx-auto">
+                                فروشنده جدید رو اضاف کن !
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <img class="img-fluid mx-auto" src="~/Content/img/panel_sellers.png" />
+        <hr />
+        <div class="jumbotron text-center">
+            <h1 class="display-4">یه فروشنده ؟!</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col BKoodakBold">
+        <hr />
+        <h5 class="text-center BTitrBold">
+            .:: لیست فروشندگان ::.
+        </h5>
+        <input ng-model="search_seller" class="form-control mt-3 text-center" />
+        <table class="table table-hover table-bordered table-striped mt-3">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">نام و نام خانوادگی</th>
+                    <th scope="col">شماره موبایل</th>
+                    <th scope="col">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="seller in sellerlist | filter : search_seller">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{seller.first_name}} {{seller.last_name}}</td>
+                    <td class="text-left">{{seller.PhoneNumber}}</td>
+                    <td class="text-center">
+                        <div dir="ltr" class="btn-group btn-group-sm" role="group">
+                            <button title="بازیابی رمز عبور" data-toggle="tooltip" data-placement="top" type="button" class="btn btn-secondary">
+                                <i class="fas fa-key"></i>
+                            </button>
+                            <button title="بلاک کردن" data-toggle="tooltip" data-placement="top" type="button" class="btn btn-danger">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                            <button title="حذف کردن" data-toggle="tooltip" data-placement="top" type="button" class="btn btn-warning">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

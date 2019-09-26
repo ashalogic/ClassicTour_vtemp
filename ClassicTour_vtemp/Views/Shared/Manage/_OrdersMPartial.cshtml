@@ -1,0 +1,320 @@
+﻿<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header text-white text-center BTitrBold">
+                <h5 class="text-right BTitrBold mb-0">
+                    <i title="کارت به کارت یا اعتباری" data-toggle="tooltip" data-placement="right" class="fas fa-phone ml-2"></i>سفارش تلفنی
+                </h5>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleFormControlInput1"><span class="text-danger">*</span> انتخاب مشتری</label>
+                            <angucomplete-alt id="csearchinput"
+                                              focus-first="true"
+                                              text-no-results="چیزی پیدا نشد"
+                                              text-searching="در حال جستجو ..."
+                                              placeholder="آتنا یا آریانپور یا 0917 یا 228"
+                                              pause="100"
+                                              selected-object="selectedcustomer"
+                                              local-data="customerlist"
+                                              search-fields="first_name,last_name,user_name,national_code"
+                                              title-field="first_name"
+                                              match-class="highlight"
+                                              minlength="1"
+                                              input-class="form-control" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <label dir="rtl" for="exampleFormControlInput1"><span class="text-danger">*</span> انتخاب تور</label>
+                            <angucomplete-alt id="tsearchinput"
+                                              focus-first="true"
+                                              text-no-results="چیزی پیدا نشد"
+                                              text-searching="در حال جستجو ..."
+                                              placeholder="شیراز یا 1002"
+                                              pause="100"
+                                              selected-object="selectedtour"
+                                              local-data="tourlist"
+                                              search-fields="title,tourcode"
+                                              title-field="title"
+                                              match-class="highlight"
+                                              minlength="1"
+                                              input-class="form-control" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <label dir="rtl" for="exampleFormControlInput1"><span class="text-danger">*</span> تعداد</label>
+                            <div dir="ltr" class="input-group">
+                                <div dir="ltr" class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">نفر</span>
+                                </div>
+                                <input ng-init="order_count=1" type="text" ng-model="order_count" class="form-control">
+                            </div>
+                            <small id="order_count" class="form-text text-muted">حداقل یک نفر ضروری است</small>
+                        </div>
+                        <div class="col">
+                            <label dir="rtl" for="exampleFormControlInput1">کد پیگیری</label>
+                            <input dir="ltr" type="text" ng-model="order_trackid" class="form-control text-left">
+                            <small id="csearchinput" class="form-text text-muted">
+                                <span class="text-danger">*</span>
+                                برای پرداخت کارت به کارت
+                            </small>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <button ng-click="Add_Order()" class="btn btn-block btn-outline-success mx-auto">
+                                <i class="fas fa-hand-holding-usd m-1"></i>
+                                ثبت و تایید پرداخت
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col text-center">
+        <img ng-show="selectedcustomer == null || selectedtour == null" class="img-fluid" src="~/Content/img/panel_orders.png" />
+        <hr ng-show="selectedcustomer == null || selectedtour == null" />
+        <div ng-show="selectedcustomer == null || selectedtour == null" class="jumbotron text-center">
+            <h1 class="display-4">سفارررش !</h1>
+        </div>
+        <div ng-show="selectedcustomer != null && selectedtour != null" class="card">
+            <div style="background-color:#009688" class="card-header text-white text-center BTitrBold">
+                <h5 class="text-right BTitrBold mb-0">
+                    <i title="اطلاعات فروش" data-toggle="tooltip" data-placement="right" class="far fa-file-alt ml-1"></i> فاکتور فروش
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <img ng-show="selectedcustomer.originalObject.gender==0" class="img-fluid rounded-circle mx-auto" src="~/Content/img/user_male.png" />
+                        <img ng-show="selectedcustomer.originalObject.gender==1" class="img-fluid rounded-circle mx-auto" src="~/Content/img/user_female.png" />
+                    </div>
+                    <div class="col text-right">
+                        {{selectedcustomer.originalObject.first_name}}
+                        {{selectedcustomer.originalObject.last_name}}
+                        <br />
+                        <small>
+                            {{selectedcustomer.originalObject.national_code}}
+                        </small>
+                    </div>
+                    <div class="col text-center">
+                        {{selectedcustomer.originalObject.PhoneNumber}}
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered table-hover text-center text-center">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        نوع پرداخت
+                                    </th>
+                                    <td>
+                                        <span ng-show="order_trackid==''||order_trackid==null">
+                                            اعتباری
+                                        </span>
+                                        <span ng-show="order_trackid!=''&&order_trackid!=null">
+                                            غیر آنلاین
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr ng-show="order_trackid!=''&&order_trackid!=null">
+                                    <th>
+                                        کد پیگری
+                                    </th>
+                                    <td>
+                                        {{order_trackid}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        نام تور
+                                    </th>
+                                    <td>
+                                        {{selectedtour.originalObject.title}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        کد تور
+                                    </th>
+                                    <td>
+                                        {{selectedtour.originalObject.tourcode}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        ظرفیت تور
+                                    </th>
+                                    <td>
+                                        {{selectedtour.originalObject.capacity}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        قیمت واحد
+                                    </th>
+                                    <td>
+                                        {{selectedtour.originalObject.price  | currency:"":0 }} تومان
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        تعداد
+                                    </th>
+                                    <td>
+                                        {{order_count}} نفر
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        قیمت کل
+                                    </th>
+                                    <td>
+                                        {{selectedtour.originalObject.price * order_count | currency:"":0 }} تومان
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col BKoodakBold">
+        <hr />
+        <h5 class="text-center BTitrBold">
+            .:: لیست سفارش ها ::.
+        </h5>
+        <input ng-model="search_order" class="form-control mt-3 text-center" />
+        <table class="table table-hover table-bordered table-striped mt-3 text-center">
+            <thead>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>خریدار</th>
+                    <th>عنوان تور</th>
+                    <th>مبلغ</th>
+                    <th>نوع پرداخت</th>
+                    <th>وضعیت</th>
+                    <th style="width:20%">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in orderlist | filter : search_order">
+                    <th class="text-center" scope="row">{{$index + 1}}</th>
+                    <td dir="rtl">
+                        <p class="text-right">
+                            <i class="fas fa-user-circle"></i>
+                            <span>
+                                {{order.customer_first_name}} {{order.customer_last_name}}
+                            </span>
+                        </p>
+                        <hr />
+                        <p class="text-left">
+                            <span title="شماره موبایل" data-toggle="tooltip" data-placement="right">
+                                {{order.customer_phone_number}}
+                            </span>
+                            <i class="fas fa-mobile-alt"></i>
+                        </p>
+                        @*<hr class="m-1" />
+                            <p class="text-left">
+                                <span title="شماره ملی" data-toggle="tooltip" data-placement="right">
+                                    {{order.customer_national_code}}
+                                </span>
+                                <i class="far fa-id-card"></i>
+                            </p>*@
+                    </td>
+                    <td>{{order.tour_title}}</td>
+                    <td dir="rtl" class="text-center">{{order.price | currency:"":0 }} تومان</td>
+
+                    <td ng-show="order.paymentmethod==0">
+                        <span class="badge badge-info">
+                            آنلاین
+                        </span>
+                    </td>
+                    <td ng-show="order.paymentmethod==1">
+                        <span class="badge badge-info">
+                            کارت به کارت
+                        </span>
+                    </td>
+                    <td ng-show="order.paymentmethod==2">
+                        <span class="badge badge-info">
+                            اعتباری
+                        </span>
+                    </td>
+
+                    <td ng-show="order.status&&order.paymentmethod==0">
+                        <span class="badge badge-success">
+                            موفق
+                        </span>
+                    </td>
+                    <td ng-show="!order.status&&order.paymentmethod==0">
+                        <span class="badge badge-danger">
+                            ناموفق
+                        </span>
+                    </td>
+                    <td ng-show="order.status&&order.paymentmethod==1">
+                        <span class="badge badge-success">
+                            تایید فروشنده
+                        </span>
+                    </td>
+                    <td ng-show="!order.status&&order.paymentmethod==1">
+                        <span class="badge badge-danger">
+                            عدم تایید فروشنده
+                        </span>
+                    </td>
+                    <td ng-show="order.status&&order.paymentmethod==2">
+                        <span class="badge badge-success">
+                            تایید کاربر
+                        </span>
+                    </td>
+                    <td ng-show="!order.status&&order.paymentmethod==2">
+                        <span class="badge badge-danger">
+                            عدم تایید کاربر
+                        </span>
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-block btn-sm btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter{{$index}}">
+                            نمایش جزئیات
+                        </button>
+                        <hr />
+                        <button type="button" class="btn btn-block btn-sm btn-outline-warning">
+                            تایید با درگاه
+                        </button>
+                        <div class="modal fade" id="exampleModalCenter{{$index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{tour.title}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

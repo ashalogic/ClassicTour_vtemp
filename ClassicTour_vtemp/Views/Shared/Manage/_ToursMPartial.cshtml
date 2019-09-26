@@ -1,0 +1,243 @@
+﻿<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header text-white text-center BTitrBold">
+                <h5 title="برای افزودن تور جدید از فرم زیر استفاده کنید" data-toggle="tooltip" data-placement="right" class="text-center BTitrBold mb-0">
+                    .:: اطلاعات تور ::.
+                </h5>
+            </div>
+            <div class="card-body">
+                <form name="add_tour">
+                    <div class="row">
+                        <div class="col">
+                            <input ng-class="{ 'is-invalid' :  add_tour.tour_name.$invalid && add_tour.tour_name.$dirty , 'is-valid': add_tour.tour_name.$valid}" name="tour_name" ng-model="tour_name" type="text" class="form-control" placeholder="نام تور" required>
+                        </div>
+                        <div class="col">
+                            <input ng-model="tour_city" type="text" class="form-control" placeholder="شهر">
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <div dir="ltr" class="input-group">
+                                <div dir="ltr" class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">نفر</span>
+                                </div>
+                                <input ng-class="{ 'is-invalid' :  add_tour.tour_capacity.$invalid && add_tour.tour_capacity.$dirty , 'is-valid': add_tour.tour_capacity.$valid}" name="tour_capacity" dir="ltr" ng-model="tour_capacity" type="number" only-numbers class="form-control" placeholder="ظرفیت" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div dir="ltr" class="input-group">
+                                <div dir="ltr" class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">روز</span>
+                                </div>
+                                <input ng-class="{ 'is-invalid' :  add_tour.tour_days.$invalid && add_tour.tour_days.$dirty, 'is-valid': add_tour.tour_days.$valid}" name="tour_days" dir="ltr" ng-model="tour_days" type="number" only-numbers class="form-control" placeholder="روز" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div dir="ltr" class="input-group">
+                                <div dir="ltr" class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">شب</span>
+                                </div>
+                                <input ng-class="{ 'is-invalid' :  add_tour.tour_nights.$invalid && add_tour.tour_nights.$dirty, 'is-valid': add_tour.tour_nights.$valid}" name="tour_nights" dir="ltr" ng-model="tour_nights" type="number" only-numbers class="form-control" placeholder="شب" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <input ng-class="{ 'is-invalid' :  add_tour.tour_startdate.$invalid && add_tour.tour_startdate.$dirty, 'is-valid': add_tour.tour_startdate.$valid}" name="tour_startdate" dir="ltr" ng-model="tour_startdate" type="text" class="form-control" placeholder="تاریخ شروع" required>
+                        </div>
+                        <div class="col">
+                            <input ng-class="{ 'is-invalid' :  add_tour.tour_enddate.$invalid && add_tour.tour_enddate.$dirty, 'is-valid': add_tour.tour_enddate.$valid}" name="tour_enddate" dir="ltr" ng-model="tour_enddate" type="text" class="form-control" placeholder="تاریخ پایان" required>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <input ng-class="{ 'is-invalid' :  add_tour.tour_startpoint.$invalid && add_tour.tour_startpoint.$dirty, 'is-valid': add_tour.tour_startpoint.$valid}" name="tour_startpoint" ng-model="tour_startpoint" type="text" class="form-control" placeholder="مبدا حرکت" required>
+                        </div>
+                        <div class="col">
+                            <div dir="ltr" class="input-group">
+                                <div dir="ltr" class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">تومان</span>
+                                </div>
+                                <input ng-class="{ 'is-invalid' :  add_tour.tour_price.$invalid && add_tour.tour_price.$dirty, 'is-valid': add_tour.tour_price.$valid }" name="tour_price" ng-model="tour_price" type="text" class="form-control" placeholder="قیمت" required>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <div class="custom-file">
+                                <input class="custom-file-input" id="customFile" type="file" nv-file-select uploader="uploader" />
+                                <label class="custom-file-label text-left" for="customFile">
+                                    <span ng-show="uploader.queue.length==0">انتخاب تصویر</span>
+                                    <span dir="ltr" ng-repeat="item in uploader.queue">
+                                        {{item.file.name}}
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input ng-model="tour_alt" type="text" class="form-control" placeholder="توضیحات تصویر">
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <textarea ng-model="tour_description" class="form-control" placeholder="توضیحات تور"></textarea>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <button dir="rtl" ng-click="uploader.uploadAll()" class="btn btn-outline-success btn-block mx-auto">
+                                تور جدید رو اضاف کن !
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col pt-2">
+                            <div class="progress" style="height:5px">
+                                <div class="progress-bar bg-success progress-bar-striped" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <img class="img-fluid mx-auto" src="~/Content/img/panel_tours4.png" />
+        <hr />
+        <div class="jumbotron text-center">
+            <h1 class="display-4">یه تور عالی !</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col BKoodakBold text-center">
+        <hr />
+        <h5 class="text-center BTitrBold">
+            .:: لیست تور ها ::.
+        </h5>
+        <input ng-model="search_tour" class="form-control mt-3 text-center" />
+        <table class="table table-hover table-bordered table-striped mt-3">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col"></th>
+                    <th scope="col">عنوان</th>
+                    <th scope="col">ظرفیت</th>
+                    <th scope="col">قیمت</th>
+                    <th scope="col">وضعیت</th>
+                    <th class="w-25" scope="col">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tour in tourlist | filter : search_tour">
+                    <th class="text-center" scope="row">{{$index+1}}</th>
+                    <td>{{tour.title}}</td>
+                    <td class="text-center">{{tour.capacity}}</td>
+                    <td dir="rtl" class="text-center">{{tour.price | currency:"":0 }} تومان</td>
+                    <td class="text-success text-center" ng-show="tour.status">فعال</td>
+                    <td class="text-danger text-center" ng-show="!tour.status">غیر فعال</td>
+                    <td>
+                        <div dir="ltr" class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon1">
+                                    افزایش ظرفیت
+                                </button>
+                            </div>
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <hr class="mt-1 mb-1" />
+                        <button type="button" class="btn btn-block btn-sm btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter{{$index}}">
+                            نمایش جزئیات
+                        </button>
+                        <hr class="mt-1 mb-1" />
+                        <button ng-show="tour.status" ng-click="Toggle_Tour_Status(tour.id)" type="button" class="btn btn-block btn-sm btn-outline-danger">
+                            غیر فعال سازی
+                        </button>
+                        <button ng-show="!tour.status" ng-click="Toggle_Tour_Status(tour.id)" type="button" class="btn btn-block btn-sm btn-outline-success">
+                            فعال سازی
+                        </button>
+                        <div class="modal fade" id="exampleModalCenter{{$index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img class="img-fluid" src="{{tour.img}}" />
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>شناسه یکتا</td>
+                                                    <td>{{tour.id}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>کد تور</td>
+                                                    <td>{{tour.tourcode}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>تاریخ شروع</td>
+                                                    <td>{{tour.startdate}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>تاریخ پایان</td>
+                                                    <td>{{tour.enddate}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>نام</td>
+                                                    <td>{{tour.title}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>قیمت</td>
+                                                    <td>{{tour.price | currency:"":0 }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>تعداد شب</td>
+                                                    <td>{{tour.nights}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>تعداد روز</td>
+                                                    <td>{{tour.days}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>مبدا حرکت</td>
+                                                    <td>{{tour.startpoint}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>شهر</td>
+                                                    <td>{{tour.city}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>ظرفیت</td>
+                                                    <td>{{tour.capacity}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>وضعیت</td>
+                                                    <td class="text-success text-center" ng-show="tour.status">فعال</td>
+                                                    <td class="text-danger text-center" ng-show="!tour.status">غیر فعال</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>توضیحات</td>
+                                                    <td>{{tour.description}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
